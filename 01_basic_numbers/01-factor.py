@@ -1,54 +1,68 @@
 '''
 Date: Monday July 30, 2018
+Update: Saturday May 18, 2019
 '''
 
 '''
-Determines if a is a factor of b.
-Assumes a and b are integers
+Determines if b is a factor of a.
+(int, int) -> (bool)
 '''
 def is_factor(a, b):
-    return b % a == 0;
+    if b == 0:
+        return False
+
+    return a % b == 0
 
 
 '''
 Find all factors of the integer num
+(int) -> (array int)
 '''
 def get_factors(num):
-    ## For a positive integer num, all its possible factors are the integer i,
+    factors = []
 
-    ## List with found factors
-    L = []
-
-    ## Search all possible factors
     for i in range(1, num + 1):
         if is_factor(i, num):
-            L.append(i)
-    return L
+            factors.append(i)
+    return factors
 
-## Test code
+
+
+# Test
+class Test:
+    count = 0
+    def run(self, result):
+        self.count += 1
+        if result:
+            print(f"Passed test {self.count}")
+        else:
+            print(f"Failed test {self.count}")
 
 
 if __name__ == "__main__":
-    from random import randint
-    def test_is_factor():
-        for i in range(50):
-            a = randint(2, 11)
-            b = randint(1, 97)
-            if is_factor(a, b):
-                print(a, "and", b, "are factors")
-            else:
-                pass
-                #print(a, "NOT in", b)
+    t = Test()
 
-    def test_get_factors():
-        ## Generate 10 random numbers, find their factors
-        numbers = [randint(1, 97) for i in range(10)]
-        for num in numbers:
-            ## Print factors, if any
-            factors = get_factors(num)
-            if len(factors) > 0:
-                print(num, "has the follow factors:")
-                print(factors)
+    a = 100
+    b = 25
+    t.run(is_factor(a, b) == True)
 
-    test_is_factor()
-    test_get_factors()
+    a = 49
+    b = 7
+    t.run(is_factor(a, b) == True)
+
+    a = 103
+    b = 1
+    t.run(is_factor(a, b) == True)
+
+    a = 37
+    b = 25
+    t.run(is_factor(a, b) == False)
+
+    a = 100
+    b = 0
+    t.run(is_factor(a, b) == False)
+
+    a = 100
+    b = 3
+    t.run(is_factor(a, b) == False)
+
