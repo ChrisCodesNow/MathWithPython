@@ -31,6 +31,17 @@ if __name__ == "__main__":
     t = Test()
 
     num = 25
-    factors = sorted(get_factors(25))
+    factors = sorted(get_factors(num))
     ans = sorted([1, 25, 5])
-    t.run(factors = ans)
+    t.run(factors == ans)
+
+    num = 17
+    factors = sorted(get_factors(num))
+    ans = sorted([1, 17])
+    t.run(factors == ans)
+
+    num = 100
+    factors = sorted(get_factors(num))
+    ans = sorted([1, 100, 2, 50, 4, 25, 5, 20, 10])
+    t.run(factors == ans)
+
